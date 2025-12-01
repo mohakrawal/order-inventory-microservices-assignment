@@ -26,7 +26,6 @@ public class InventoryService {
     public List<BatchResponse> getBatchesForProduct(Long productId) {
         List<Batch> batches = batchRepository.findByProductIdOrderByExpiryDateAsc(productId);
         return batches.stream()
-                .filter(e-> e.getId()==productId)
                 .map(b -> BatchResponse.builder()
                         .id(b.getId())
                         .quantity(b.getQuantity())
