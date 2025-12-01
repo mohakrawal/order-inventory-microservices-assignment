@@ -15,8 +15,11 @@ spring:
 
   jpa:
     hibernate:
-      ddl-auto: create-drop
-    show-sql: true
+      ddl-auto: none
+  sql:
+    init:
+      mode: always
+
 
 server:
   port: 8081
