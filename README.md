@@ -20,8 +20,8 @@ Two independent Spring Boot microservices in the same repository:
 
 ### Steps
 1. Clone the repository:
-- git clone <repository-url>
-- cd <repository-directory>
+- git clone *<repository-url>*
+- cd *<repository-directory>*
 
 2. Navigate to each microservice folder (order-service / inventory-service) and build the project:
 
