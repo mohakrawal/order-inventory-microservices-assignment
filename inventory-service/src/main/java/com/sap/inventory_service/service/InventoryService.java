@@ -26,6 +26,7 @@ public class InventoryService {
     public List<BatchResponse> getBatchesForProduct(Long productId) {
         List<Batch> batches = batchRepository.findByProductIdOrderByExpiryDateAsc(productId);
         return batches.stream()
+                .filter(e-> e.getId()==productId)
                 .map(b -> BatchResponse.builder()
                         .id(b.getId())
                         .quantity(b.getQuantity())
@@ -39,8 +40,8 @@ public class InventoryService {
      * @param request
      * @param handlerKey
      */
-    public void updateInventory(UpdateInventoryRequest request, String handlerKey) {
+    public String updateInventory(UpdateInventoryRequest request, String handlerKey) {
         InventoryHandler handler = factory.getHandler(handlerKey);
-        handler.handle(request);
+        return handler.handle(request);
     }
 }

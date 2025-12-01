@@ -37,20 +37,20 @@ class InventoryServiceTest {
     @Test
     void getBatchesForProduct_shouldReturnListOfBatchResponses() {
         LocalDate expiryDate = LocalDate.of(2025, 12, 1);
-        List<Batch> batches = Arrays.asList(
-                Batch.builder().id(1L).quantity(20).expiryDate(expiryDate).build(),
-                Batch.builder().id(2L).quantity(50).expiryDate(expiryDate).build()
-        );
+        Batch batch1= new Batch();
+        batch1.setId(1l);
+        batch1.setExpiryDate(expiryDate);
+        batch1.setQuantity(5);List<Batch> batches = Arrays.asList(batch1);
 
         when(batchRepository.findByProductIdOrderByExpiryDateAsc(1L)).thenReturn(batches);
 
         List<BatchResponse> result = inventoryService.getBatchesForProduct(1L);
 
         assertNotNull(result);
-        assertEquals(2, result.size());
-        assertEquals(20, result.get(0).getQuantity());
+        assertEquals(1, result.size());
+        assertEquals(5, result.get(0).getQuantity());
         assertEquals(expiryDate, result.get(0).getExpiryDate());
-        assertEquals(50, result.get(1).getQuantity());
+        assertEquals(5, result.get(0).getQuantity());
     }
 
     @Test

@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
@@ -15,7 +16,6 @@ import java.time.LocalDate;
 
 @Data
 @Entity
-@Builder
 @Table(name = "batch")
 public class Batch {
 

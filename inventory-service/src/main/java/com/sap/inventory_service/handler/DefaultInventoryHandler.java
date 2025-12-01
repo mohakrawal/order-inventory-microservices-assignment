@@ -16,7 +16,7 @@ public class DefaultInventoryHandler implements InventoryHandler {
 
     @Override
     @Transactional
-    public void handle(UpdateInventoryRequest request) {
+    public String handle(UpdateInventoryRequest request) {
         List<Batch> batches = batchRepository.findByProductIdOrderByExpiryDateAsc(request.getProductId());
         int remaining = request.getQuantity();
         for (Batch b : batches) {
@@ -27,7 +27,8 @@ public class DefaultInventoryHandler implements InventoryHandler {
             batchRepository.save(b);
         }
         if (remaining > 0) {
-            throw new IllegalStateException("Not enough inventory for product " + request.getProductId());
+            return "Not enough inventory for product " + request.getProductId();
         }
+        return "Update successful";
     }
 }
