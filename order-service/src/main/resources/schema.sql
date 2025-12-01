@@ -1,0 +1,8 @@
+DROP TABLE IF EXISTS order;
+
+CREATE TABLE order (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    product_id BIGINT NOT NULL,
+    quantity INT NOT NULL,
+    status VARCHAR(50) NOT NULL
+);
