@@ -37,24 +37,28 @@ mvn spring-boot:run
 cd ../inventory-service
 mvn spring-boot:run
 
-Order Service: http://localhost:8080/order-service
+Order Service:
+``` http://localhost:8080/order-service ```
 
-Inventory Service: http://localhost:8081/inventory-service
+Inventory Service:
+``` http://localhost:8081/inventory-service ```
 
 
-API Documentation
+## API Documentation
 Order Service
 Place an Order
 
 POST /order-service/order
 *Request Body*
-
+```
 {
   "productId": 1,
   "quantity": 2
 }
+```
 
 *Response*:
+```
 {
     "id": 1,
     "productId": 1,
@@ -63,4 +67,5 @@ POST /order-service/order
     "status": "PLACED",
     "createdAt": "2025-12-01T21:40:58.831346"
 }
+```
 
