@@ -13,7 +13,7 @@ public class OrderService {
     private final OrderRepository orderRepository;
     private final RestTemplate restTemplate;
 
-    private static final String inventoryBaseUrl = "http://localhost:8081/inventory-service/update";
+    private static final String inventoryBaseUrl = "http://localhost:8081/inventory/update";
 
     public OrderService(final OrderRepository orderRepository,final RestTemplate restTemplate) {
         this.orderRepository = orderRepository;
