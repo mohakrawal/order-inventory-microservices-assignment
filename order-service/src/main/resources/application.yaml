@@ -3,7 +3,7 @@ spring:
     name: order-service
 
   datasource:
-    url: jdbc:h2:mem:inventorydb
+    url: jdbc:h2:mem:orderdb
     driverClassName: org.h2.Driver
     username: sa
     password:
@@ -22,7 +22,7 @@ spring:
 
 
 server:
-  port: 8081
+  port: 8082
 
 management:
   endpoints:

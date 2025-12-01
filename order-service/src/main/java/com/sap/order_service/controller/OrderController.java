@@ -7,7 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/order")
+@RequestMapping("/order-service")
 
 public class OrderController {
     private final OrderService orderService;
@@ -16,7 +16,7 @@ public class OrderController {
         this.orderService = orderService;
     }
 
-    @PostMapping
+    @PostMapping("/order")
     public ResponseEntity<Order> placeOrder(@RequestBody OrderRequest req) {
         return ResponseEntity.ok(orderService.placeOrder(req));
     }

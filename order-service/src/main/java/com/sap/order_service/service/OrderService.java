@@ -20,7 +20,7 @@ public class OrderService {
     public Order placeOrder(OrderRequest req) {
         UpdateInventoryRequest update = new UpdateInventoryRequest(req.getProductId(), req.getQuantity());
         try {
-            ResponseEntity<Void> resp = restTemplate.postForEntity(inventoryBaseUrl + "/inventory/update", update, Void.class);
+            ResponseEntity<Void> resp = restTemplate.postForEntity(inventoryBaseUrl + "/inventory-service/update", update, Void.class);
             if (resp.getStatusCode().is2xxSuccessful()) {
                 Order order = Order.builder()
                         .productId(req.getProductId())
