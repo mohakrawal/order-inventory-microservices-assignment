@@ -15,7 +15,7 @@ Two independent Spring Boot microservices in the same repository:
 2. [API Documentation](#api-documentation)
 3. [Testing Instructions](#testing-instructions)
 
-
+## Project Setup
 
 ### Steps
 1. Clone the repository:
