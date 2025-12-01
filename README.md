@@ -17,43 +17,45 @@ Two independent Spring Boot microservices in the same repository:
 
 ## Project Setup
 
+
 ### Steps
 1. Clone the repository:
-```bash
-git clone <repository-url>
-cd <repository-directory>
+- git clone <repository-url>
+- cd <repository-directory>
 
-Navigate to each microservice folder (order-service / inventory-service) and build the project:
-cd order-service
-mvn clean install
+2. Navigate to each microservice folder (order-service / inventory-service) and build the project:
 
-cd ../inventory-service
-mvn clean install
+- cd order-service
+- mvn clean install
+- cd inventory-service
+- mvn clean install
 
-Run each service (default H2 in-memory DB is used for development):
-cd order-service
-mvn spring-boot:run
-
-cd ../inventory-service
-mvn spring-boot:run
-
-Order Service:
-``` http://localhost:8080/order-service ```
-
-Inventory Service:
-``` http://localhost:8081/inventory-service ```
-
+3. Run each service (default H2 in-memory DB is used for development):
+- cd order-service
+- Run OrderServiceApplication.java
+- cd inventory-service
+- Run InventoryServiceApplication.java
 
 ## API Documentation
-Order Service
-Place an Order
 
-POST /order-service/order
-*Request Body*
+Order Service:
+``` http://localhost:8082/order-service ```
+
+Inventory Service:
+``` http://localhost:8081/inventory ```
+
+
+
+
+Order Service
+- Place an Order
+
+POST:  http://localhost:8082/order-service/order
+- *Request Body*
 ```
 {
-  "productId": 1,
-  "quantity": 2
+"productId": 1,
+"quantity": 20
 }
 ```
 
@@ -65,7 +67,38 @@ POST /order-service/order
     "quantity": 10,
     "price": null,
     "status": "PLACED",
-    "createdAt": "2025-12-01T21:40:58.831346"
+    "createdAt": "2025-12-01T22:10:38.845275"
 }
 ```
+Inventory Service
+- Get Batches for a Product
+
+GET:  http://localhost:8081/inventory/{productId}
+- Response:
+```
+{
+"id": 1,
+"quantity": 20,
+"expiryDate": "2025-12-01"
+}
+```
+- Update Inventory
+
+POST http://localhost:8081/inventory/update
+- Request body
+```
+{
+"productId": 1,
+"quantity": 10
+}
+```
+
+- Response
+"Update successful"
+
+## Testing instructions
+JUnit 5 + Mockito is used for unit testing controllers, services, and handlers.
+
+Run tests using Maven:
+mvn test
 
