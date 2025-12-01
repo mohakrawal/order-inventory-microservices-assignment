@@ -15,11 +15,22 @@ import java.util.List;
 public class InventoryController {
     private final InventoryService service;
 
+    /**
+     * Get product based on ID
+     * @param productId
+     * @return
+     */
     @GetMapping("/{productId}")
     public ResponseEntity<List<BatchResponse>> getBatches(@PathVariable Long productId) {
         return ResponseEntity.ok(service.getBatchesForProduct(productId));
     }
 
+    /**
+     * check stock in inventory and update quantity
+     * @param request
+     * @param handler
+     * @return
+     */
     @PostMapping("/update")
     public ResponseEntity<Void> updateInventory(@RequestBody UpdateInventoryRequest request,
                                                 @RequestParam(required = false) String handler) {

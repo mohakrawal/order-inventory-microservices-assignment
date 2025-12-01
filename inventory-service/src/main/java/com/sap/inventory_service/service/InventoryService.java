@@ -18,6 +18,11 @@ public class InventoryService {
     private final BatchRepository batchRepository;
     private final InventoryHandlerFactory factory;
 
+    /**
+     * Fetch batched for product based on Id
+     * @param productId
+     * @return
+     */
     public List<BatchResponse> getBatchesForProduct(Long productId) {
         List<Batch> batches = batchRepository.findByProductIdOrderByExpiryDateAsc(productId);
         return batches.stream()
@@ -29,6 +34,11 @@ public class InventoryService {
                 .collect(Collectors.toList());
     }
 
+    /**
+     * update inventory based on request from order-service
+     * @param request
+     * @param handlerKey
+     */
     public void updateInventory(UpdateInventoryRequest request, String handlerKey) {
         InventoryHandler handler = factory.getHandler(handlerKey);
         handler.handle(request);
