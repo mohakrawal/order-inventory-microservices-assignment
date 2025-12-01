@@ -16,6 +16,11 @@ public class OrderController {
         this.orderService = orderService;
     }
 
+    /**
+     * Accept and process orders
+     * @param req
+     * @return
+     */
     @PostMapping("/order")
     public ResponseEntity<Order> placeOrder(@RequestBody OrderRequest req) {
         return ResponseEntity.ok(orderService.placeOrder(req));
